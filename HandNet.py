@@ -87,37 +87,6 @@ class ConvBN(nn.Sequential):
         ]))
 
 
-class CRBlock(nn.Module):
-    def __init__(self):
-        super(CRBlock, self).__init__()
-        self.path1 = nn.Sequential(OrderedDict([
-            ('conv3x3', ConvBN(2, 7, 3)),
-            ('relu1', nn.LeakyReLU(negative_slope=0.3, inplace=True)),
-            ('conv1x9', ConvBN(7, 7, [1, 9])),
-            ('relu2', nn.LeakyReLU(negative_slope=0.3, inplace=True)),
-            ('conv9x1', ConvBN(7, 7, [9, 1])),
-        ]))
-        self.path2 = nn.Sequential(OrderedDict([
-            ('conv1x5', ConvBN(2, 7, [1, 5])),
-            ('relu', nn.LeakyReLU(negative_slope=0.3, inplace=True)),
-            ('conv5x1', ConvBN(7, 7, [5, 1])),
-        ]))
-        self.conv1x1 = ConvBN(7 * 2, 2, 1)
-        self.identity = nn.Identity()
-        self.relu = nn.LeakyReLU(negative_slope=0.3, inplace=True)
-
-    def forward(self, x):
-        identity = self.identity(x)
-
-        out1 = self.path1(x)
-        out2 = self.path2(x)
-        out = torch.cat((out1, out2), dim=1)
-        out = self.relu(out)
-        out = self.conv1x1(out)
-
-        out = self.relu(out + identity)
-        return out
-
 class BasicConv(nn.Module):
     def __init__(self, in_planes, out_planes, kernel_size, stride=1, padding=0, dilation=1, groups=1, relu=True, bn=True, bias=False):
         super(BasicConv, self).__init__()
