@@ -1,7 +1,5 @@
-# mat data
+# data
 *.mat
-./runexp1/exp1/
-./runexp1/exp2/
 *.pt
 *.pth
 
