@@ -25,13 +25,17 @@ With set `--save` to 1, it will generate `gt_joints.pt` `gt_mask.pt` `pred_joint
 
 ## Visualization
 
+There are a sample folder with each gesture two samples named `infersmall` in this link https://drive.google.com/drive/folders/1yCNydY3YaBTXko7q8v7zrXrIKKxv_xyb?usp=drive_link for quick visualize the experiment result (but you need to change the file name inside the plotjoints.py and plotmask.py to the corresponding)
+
+The following code we still use the inference whole dataset result
+
 ### visual joints
 
 run `plotjoints.py` will generate one sample with its ground truth and predicted joints in .png format
 
 Usage: `python ./plotjoints.py --k <batch idx> --j <sample idx> --folder <folder store pt file> --exp <subdirectory to store the output image>`
 
-can quickly run `sh plotjoints.sh` for default (plot first ten sample in pt file)
+can quickly run `sh plotjoints.sh` for default (plot first 16 samples in pt file)
 
 
 ### visual mask
@@ -40,7 +44,7 @@ run `plotmask.py` will generate one sample with its ground truth and predicted m
 
 Usage: `python ./plotmask.py --k <batch idx> --j <sample idx> --folder <folder store pt file> --exp <subdirectory to store the output image>`
 
-can quickly run `sh plotmask.sh` for default (plot first ten sample in pt file)
+can quickly run `sh plotmask.sh` for default (plot first 16 samples in pt file)
 
 ## Data Processing
 

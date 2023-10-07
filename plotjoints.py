@@ -30,6 +30,13 @@ gt = gt[k][j].cpu().detach().numpy()
 pre = torch.load(f'./{args.folder}/pred_joints_2d.pt', map_location=torch.device('cpu'))
 prez = torch.load(f'./{args.folder}/pred_joints_3d.pt', map_location=torch.device('cpu'))
 
+
+# gt = torch.load(f'./{args.folder}/gt_joints_small.pt', map_location=torch.device('cpu'))
+# gt = gt[k][j].cpu().detach().numpy()
+
+# pre = torch.load(f'./{args.folder}/pred_joints_2d_small.pt', map_location=torch.device('cpu'))
+# prez = torch.load(f'./{args.folder}/pred_joints_3d_small.pt', map_location=torch.device('cpu'))
+
 pre = pre[k][j].view(-1,2,21)
 prez = prez[k][j]
 
@@ -37,6 +44,9 @@ pre = pre[0][:][:].cpu().detach().numpy()
 prez = prez.cpu().detach().numpy()
 
 pre = np.vstack((pre,prez))
+
+# filled the gt wrist point to prediction to form 3*22 joints
+pre = np.column_stack((pre, gt[:,21]))
 
 xs, xe = 0.1,0.7
 ys, ye = 0,0.6
@@ -49,7 +59,7 @@ def plot_lines(points):
 	mcps = []
 
 	# Wrist
-	wrist = points[:,0]
+	wrist = points[:,21]
 	colormap = ['#40E0D0', '#FF7F50', '#DFFF00', '#CCCCFF', '#9FE2BF', '#6495ED']
 	# For Each of the 5 fingers
 	for i in range(0,5):
