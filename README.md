@@ -42,11 +42,15 @@ Usage: `python ./plotmask.py --k <batch idx> --j <sample idx> --folder <folder s
 
 can quickly run `sh plotmask.sh` for default (plot first ten sample in pt file)
 
+## Data Processing
+
 ### data collection
 
-collect csi data to run `./datacollect/CollectCSI/testv_1X3.m`
+collect csi data to run `./DATACollection/CollectCSI/testv_1X3.m`
 
-collect ground truth data (joints and mask) to run `./datacollect/CollectGT/collect_GT.py`
+collect ground truth data (joints and mask) to run `./DATACollection/CollectGT/collect_GT.py`
 
+### data cleaning
 
+run matlab code in `./DATACleaning`
 
