@@ -1,6 +1,5 @@
 # HandFi
 
-## Coming soon....
 
 
 ## Inference with the pretrained model weights
